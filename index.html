@@ -1,91 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VoiceOps Test</title>
-  <style>
-    :root {
-      --bg-color: #000033; /* Dark Blue default */
-      --text-color: #F5F5DC; /* Creamy light */
-      --accent-color: #D2B48C; /* Tan */
-      --btn-bg: #D2B48C;
-      --btn-text: #000033;
-      --transition-speed: 0.4s;
-    }
-
-    [data-theme="light"] {
-      --bg-color: #FFFDD0; /* Light Cream */
-      --text-color: #000033; /* Dark blue text */
-      --accent-color: #8B4513; /* Saddle Brown */
-      --btn-bg: #000033;
-      --btn-text: #FFFDD0;
-    }
-
-    body {
-      font-family: system-ui;
-      max-width: 600px;
-      margin: 80px auto;
-      text-align: center;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color var(--transition-speed), color var(--transition-speed);
-    }
-    h1 {
-      color: var(--text-color);
-      transition: color var(--transition-speed);
-    }
-    .version {
-      color: var(--accent-color);
-      font-size: 0.9em;
-      transition: color var(--transition-speed);
-    }
-    button, .btn {
-      background-color: var(--btn-bg);
-      color: var(--btn-text);
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      border-radius: 4px;
-      font-weight: bold;
-      transition: background-color var(--transition-speed), color var(--transition-speed);
-    }
-    .theme-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
 </head>
 <body>
-  <div class="theme-toggle">
-    <button id="mode-toggle">Switch Mode</button>
-  </div>
-  <h1>VoiceOps Preview Test</h1>
-  <p>If you can see this, the Render PR preview deploy is working.</p>
-  <p class="version">v1.1.0 — preview deploy test</p>
-
-  <script>
-    const toggleBtn = document.getElementById('mode-toggle');
-    const htmlElement = document.documentElement;
-
-    // Check for saved preference
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    htmlElement.setAttribute('data-theme', savedTheme);
-    updateButtonText(savedTheme);
-
-    toggleBtn.addEventListener('click', () => {
-      const currentTheme = htmlElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-
-      htmlElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      updateButtonText(newTheme);
-    });
-
-    function updateButtonText(theme) {
-      toggleBtn.textContent = theme === 'light' ? 'Dark Mode' : 'Light Mode';
-    }
-  </script>
+    Hello World.
 </body>
 </html>
