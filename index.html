@@ -3,9 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+    <title>Minimal Dark Mode</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #theme-toggle {
+            padding: 8px 16px;
+            cursor: pointer;
+            border: 1px solid var(--text-color);
+            background: transparent;
+            color: var(--text-color);
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
-    Hello World
+    <h1>Hello World</h1>
+    <button id="theme-toggle">Switch Theme</button>
+
+    <script>
+        const toggle = document.getElementById('theme-toggle');
+        const root = document.documentElement;
+
+        // Detect system theme preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+        function setTheme(theme) {
+            root.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            toggle.textContent = theme === 'dark' ? 'Switch to Light' : 'Switch to Dark';
+        }
+
+        // Initialize theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setTheme(savedTheme);
+        } else {
+            setTheme(prefersDark.matches ? 'dark' : 'light');
+        }
+
+        // Listen for system changes
+        prefersDark.addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                setTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+
+        // Manual switch
+        toggle.addEventListener('click', () => {
+            const currentTheme = root.getAttribute('data-theme');
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+    </script>
 </body>
 </html>
